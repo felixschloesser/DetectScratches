@@ -4,12 +4,15 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 
-def load_img(filename, bw=True, array=True):
+def load_img(filename, size=(512, 512), color=False, array=True):
     """Load and return an image-object from the standard path."""
     test_images_path = '/home/tintin/rongheng/cv/test_images/'
     os.chdir(test_images_path)
     img = Image.open(filename)
-    if bw:
+
+    img.thumbnail(size)
+
+    if not color:
         # convert to grayscale
         img = img.convert('L')
 
