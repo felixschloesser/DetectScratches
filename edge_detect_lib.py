@@ -1,7 +1,7 @@
 """Functions to calculate image derivatives."""
 
 import numpy as np
-import madtplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import scipy.signal as sg
 import scipy.ndimage as filters
 
