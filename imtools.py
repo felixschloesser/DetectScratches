@@ -1,9 +1,29 @@
-"""test."""
-
 import os
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
+
+
+def load_img(filename, bw=True, array=True):
+    """Load and return an image-object from the standard path."""
+    test_images_path = '/home/tintin/rongheng/cv/test_images/'
+    os.chdir(test_images_path)
+    img = Image.open(filename)
+    if bw:
+        # convert to grayscale
+        img = img.convert('L')
+
+    if array:
+        # return as np.array
+        img_array = np.array(img)
+        return img_array
+    else:
+        # return as Pillow.Image
+        return img
+
+
+def save_img(array, filename):
+    Image.fromarray(ar.round().astype(np.uint8)).save(fname)
 
 
 def img_list(path):
@@ -17,6 +37,15 @@ def resize_img(img, size):
     img = Image.fromarray(np.uint8(img))
 
     return np.array(img.resize(size))
+
+
+def show_hist(img_array, num_bins=256, size=(5, 5)):
+    """Display the Histogramm of a givin Image."""
+    plt.figure(figsize=size)
+    plt.hist(img_array.flatten(), num_bins)
+    plt.axis('off')
+
+    plt.show()
 
 
 def eq_hist(img_array, num_bins=256):
@@ -39,3 +68,4 @@ def show_img(img, size=(5, 5), color=False):
     else:
         plt.imshow(img, cmap='gray', vmin=0, vmax=255)
     plt.axis('off')
+    plt.show()
