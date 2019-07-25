@@ -2,6 +2,7 @@ result_images/
 
 # Sublime Text
 *.sublime-workspace
+*.sublime-project
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
