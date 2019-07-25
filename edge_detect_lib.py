@@ -2,7 +2,6 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.signal as sg
 import scipy.ndimage as filters
 
 
@@ -11,27 +10,12 @@ def threshold(img, threshold, percent=False, invert=False):
         threshold = img.max() * threshold
 
     """Replace all values bellow a given threshold with 0 rest 255."""
-    if not invert:
+    if invert:
         binary_img = np.where(img >= threshold, 0, 255)
     else:
         binary_img = np.where(img <= threshold, 0, 255)
 
     return binary_img
-
-
-def gaussian_kernel(n, std, normalised=False):
-    """
-    Generate a n x n matrix with a gaussian centered on it.
-
-    The distributions standard dev is std. If normalised, its volume equals 1.
-    """
-    gaussian = sg.gaussian(n, std)
-    gaussian2d = np.outer(gaussian, gaussian)
-
-    if normalised:
-        gaussian2d /= (2 * np.pi * (std**2))
-
-    return gaussian2d
 
 
 def derivative(img, dir='xy', sigma=1):
@@ -125,6 +109,3 @@ def overlay_points(image, filtered_coords, size=(15, 15), save=False):
 
     plt.show()
 
-
-def norm(ar):
-    return 255. * np.absolute(ar) / np.max(ar)
