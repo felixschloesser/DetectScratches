@@ -1,3 +1,11 @@
+# Jupyter
+*.bash_history
+*.ipython
+*.jupyter/
+*.local
+*.python_history
+
+# Project
 result_images/
 
 # Sublime Text

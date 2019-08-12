@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  juypter:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - type: "bind"
+        source: "/home/tintin/cv-env/notebooks"
+        target: "/home/jovyan"
+
