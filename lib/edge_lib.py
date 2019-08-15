@@ -11,11 +11,11 @@ def threshold(img, threshold, percent=False, invert=False):
 
     """Replace all values bellow a given threshold with 0 rest 255."""
     if invert:
-        binary_img = np.where(img >= threshold, 0, img)
+        thresholded_img = np.where(img >= threshold, 0, img)
     else:
-        binary_img = np.where(img <= threshold, 0, img)
+        thresholded_img = np.where(img <= threshold, 0, img)
 
-    return binary_img
+    return thresholded_img
 
 
 def derivative(img, dir='xy', sigma=1):
@@ -108,4 +108,6 @@ def overlay_points(image, filtered_coords, size=(15, 15), save=False):
         plt.savefig('redge_points.jpg')
 
     plt.show()
+
+
 

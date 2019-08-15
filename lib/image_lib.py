@@ -26,7 +26,8 @@ def load_img(filename, size=(512, 512), color=False, array=True):
 
 
 def save_img(array, filename):
-    Image.fromarray(ar.round().astype(np.uint8)).save(fname)
+    path = "/home/tintin/rongheng/cv/result_images/"
+    Image.fromarray(array.round().astype(np.uint8)).save(path + filename)
 
 
 def img_list(path):
@@ -62,7 +63,7 @@ def eq_hist(img_array, num_bins=256):
     return im2.reshape(img_array.shape)
 
 
-def show_img(*images, size=(5, 5), color=""):
+def show_img(*images, size=(10, 10), color="", vmin=0, vmax=255):
     """Display one or multiple images given as an np.array."""
     image = (i for i in images)
     rows = int(np.round(np.sqrt(len(images))))
@@ -76,9 +77,9 @@ def show_img(*images, size=(5, 5), color=""):
             if not color:
                 frame.imshow(next(image))
             elif color == "bw":
-                frame.imshow(next(image), cmap="gray", vmin=0, vmax=255)
+                frame.imshow(next(image), cmap="gray", vmin=vmin, vmax=vmax)
             else:
-                frame.imshow(next(image), cmap=color)
+                frame.imshow(next(image), cmap=color, vmin=vmin, vmax=vmax)
         except StopIteration:
             break
     plt.show()
