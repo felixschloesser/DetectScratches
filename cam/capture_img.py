@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from fcntl import ioctl
 from PIL import Image, ImageFile
 import mmap

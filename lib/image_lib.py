@@ -83,3 +83,9 @@ def show_img(*images, size=(10, 10), color="", vmin=0, vmax=255):
         except StopIteration:
             break
     plt.show()
+
+
+def normalize(img):
+    normalized = 255. * np.absolute(img) / np.max(img)
+
+    return normalized
