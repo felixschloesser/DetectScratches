@@ -25,9 +25,12 @@ def load_img(filename, size=(512, 512), color=False, array=True):
         return img
 
 
-def save_img(array, filename):
-    path = "/home/tintin/rongheng/cv/result_images/"
-    Image.fromarray(array.round().astype(np.uint8)).save(path + filename)
+def save_img(array, filename, path="/home/tintin/rongheng/cv/result_images/"):
+    image = Image.fromarray(array.round().astype(np.uint8))
+    if filename:
+        image.save(path + filename)
+    else:
+        image.save(path + "out.jpg")
 
 
 def img_list(path):
