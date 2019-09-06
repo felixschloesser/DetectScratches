@@ -79,7 +79,11 @@ def rigid_alignment(faces, path):
         T = np.array([[R[1][1], R[1][0]],
                   [R[0][1], R[0][0]]])
 
-        img = np.array(Image.open(os.path.join(path,face)))
+        try:
+            img = np.array(Image.open(os.path.join(path,face)))
+        except FileNotFoundError:
+            print("skipping ",face, "...")
+            continue
         img_2 = np.zeros(img.shape, 'uint8')
 
         # warp each color channel
@@ -91,4 +95,4 @@ def rigid_alignment(faces, path):
         border = (w+h)//20
 
         #crop away border
-        save_img(img_2[border:h-border, border:w-border,:], os.path.join(path, face))
+        save_img(img_2[border:h-border, border:w-border,:], face, os.path.join(path + 'aligned/'))

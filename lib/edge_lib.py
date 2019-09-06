@@ -57,57 +57,62 @@ def harris_response(img, sigma=3):
     return w_det / w_thr
 
 
-def get_points(response, min_dist=10, allow_cluster=True):
+
+def get_points(array, threshold=0,sort=True, min_dist=0):
     """
-    Return corners from a response image.
-
-    min_dist ist the minumum number of pixels seperating corners
-    and image boundary.
+    Return coordinates of as a dictionary, by default sorted by value in the array.
+    If min_distance is set ignore other points in the vicinity.
     """
 
-    # get coordinates of candidates
-    coords = np.array(response.nonzero()).T
-
+    # get coordinates of entries that are non zero
+    coords = [tuple(c) for c in np.argwhere(array>threshold)]
     # ... and their values
-    candidate_values = [response[c[0], c[1]] for c in coords]
+    values = [array[x, y] for x,y in coords]
 
-    # sort candidates
-    index = np.argsort(candidate_values)
+    points = []
 
-    # store allowed point locations in array
-    allowed_locations = np.ones(response.shape)
-    allowed_locations[min_dist:-min_dist, min_dist:-min_dist] = 0
+    for i, value in enumerate(values):
+        points.append(tuple([coords[i], value]))
 
-    if allow_cluster:
-        min_dist = 0
+    if sort:
+        points.sort(key=lambda point: point[1], reverse=True)
 
-    # select the best points taking min_distance into account
-    filtered_coords = []
+    if min_dist:
+        # store allowed point locations in array
+        allowed_locations = np.ones(array.shape)
+         # not on the edges of the image
+        allowed_locations[min_dist:-min_dist, min_dist:-min_dist] = 0
 
-    for i in index:
-        if allowed_locations[coords[i, 0], coords[i, 1]] == 0:
-            filtered_coords.append(coords[i])
-            allowed_locations[(coords[i, 0] - min_dist):
-                              (coords[i, 0] + min_dist),
+        # select the best points taking min_distance into account
+        filtered_points = []
 
-                              (coords[i, 1] - min_dist):
-                              (coords[i, 1] + min_dist)] = 1
+        for point in points:
+            x,y = point[0]
 
-    return filtered_coords
+            if allowed_locations[x,y] == 0:
+                filtered_points.append(point)
+                allowed_locations[(x - min_dist):
+                                  (x + min_dist),
+
+                                  (y - min_dist):
+                                  (y + min_dist)] = 1
+
+            points = filtered_points
+    return points
 
 
-def overlay_points(image, filtered_coords, size=(15, 15), save=False):
+def overlay_points(image, points, size=(15, 15), save=False):
     """Plot points found in image."""
     plt.figure(figsize=size)
-    plt.imshow(image, cmap='gray', vmin=0, vmax=255)
-    plt.plot([p[1] for p in filtered_coords], [p[0] for p in filtered_coords],
-             'r*')
+    plt.imshow(image)
+    for point in points:
+        x, y = point[0]
+        plt.plot(y,x,'r*')
     plt.axis('off')
     plt.title('edge points')
     if save:
         plt.savefig('redge_points.jpg')
 
     plt.show()
-
 
 
