@@ -6,9 +6,9 @@ Development Environment: Jupyter Notebook
 
 ### Required Libaries:
 
-* lib/image.py
-* lib/edge.py
-* lib/crop.py
+* lib/image.py: [doc](../docs/image.md)
+* lib/edge.py: [doc](../docs/edge.md)
+* lib/crop.py: [doc](../docs/crop.md)
 
 ### Unused Libraries:
 
