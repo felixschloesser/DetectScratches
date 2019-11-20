@@ -7,7 +7,7 @@ Experiments into the field of computer vision.
 * Pillow
 * scipy
 
-see the requirements.txt for the full list
+see docker/requirements.txt for the full list
 
 
 ## Docker deployment
