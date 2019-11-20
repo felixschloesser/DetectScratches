@@ -1,4 +1,4 @@
-# Detect Scraches
+# Detect Scratches
 Experiments into the field of computer vision.
 
 ## used libaries
