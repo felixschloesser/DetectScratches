@@ -6,6 +6,6 @@ services:
       - "8888:8888"
     volumes:
       - type: "bind"
-        source: "/home/tintin/cv-env/notebooks"
+        source: "/Users/fs/Uni/Praktikum/DetectScratches/notebooks"
         target: "/home/jovyan"
 
