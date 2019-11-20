@@ -1,3 +1,4 @@
+import sys
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,12 +6,21 @@ from PIL import Image
 
 
 def load_img(filename, size=(512, 512), color=False, array=True):
+
     """Load and return an image-object from the standard path."""
+    path = os.getcwd()
     test_images_path = '/home/tintin/rongheng/cv/test_images/'
     os.chdir(test_images_path)
-    img = Image.open(filename)
+    try:
+        img = Image.open(filename)
+    except FileNotFoundError:
+        print("Error: Image", filename ,"not found")
+        sys.exit(1)
+    # Back to original path
+    os.chdir(path)
 
-    img.thumbnail(size)
+    height, width = size
+    img.thumbnail((width, height))
 
     if not color:
         # convert to grayscale
@@ -35,15 +45,23 @@ def save_img(array, filename, path=os.getcwd()):
 
 def img_list(path):
     """Return a list of filenames for all jpg images in a directory."""
-    return [os.path.join(path, f) for f in os.listdir(path)
+    return [f for f in os.listdir(path)
             if (f.endswith('.jpg') or f.endswith('.jpeg'))]
 
 
-def resize_img(img, size):
+def resize_img(img_array, size):
     """Resize an image array unsing PIL."""
-    img = Image.fromarray(np.uint8(img))
+    img = Image.fromarray(np.uint8(img_array))
+    height, width = size
+    resized = np.array(img.resize((width, height)))
 
-    return np.array(img.resize(size))
+    # Calcualte Scaling Factor
+    org_height, org_width = img_array.shape
+    new_height, new_width = resized.shape
+
+    scale = new_height/ org_height
+
+    return resized, scale
 
 
 def show_hist(img_array, num_bins=256, size=(5, 5)):
@@ -78,7 +96,10 @@ def show_img(*images, size=(10, 10), color="", vmin=0, vmax=255):
         frame.axis("off")
         try:
             if not color:
-                frame.imshow(next(image))
+                if vmax == 255:
+                    frame.imshow(next(image))
+                else:
+                    frame.imshow(next(image), vmin=vmin, vmax=vmax)
             elif color == "bw":
                 frame.imshow(next(image), cmap="gray", vmin=vmin, vmax=vmax)
             else:
@@ -92,3 +113,14 @@ def normalize(img):
     normalized = 255. * np.absolute(img) / np.max(img)
 
     return normalized
+
+
+if __name__ == '__main__':
+    img = load_img("d09.jpg", size=(333, 800))
+    print("Original:", img.shape)
+    print("resizing...")
+    resized, scale = resize_img(img, (300,400))
+    print("Resized:", resized.shape)
+    print("Scale:", scale)
+
+    show_img(resized)

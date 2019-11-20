@@ -193,7 +193,7 @@ my_settings = {
     "sharpness": 0,
     "backlight_compensation": 1,
     "exposure_auto": 1,
-    "exposure_absolute": 1300,
+    "exposure_absolute": 280,
     "exposure_auto_priority": 0
 }
 

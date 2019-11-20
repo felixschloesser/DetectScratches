@@ -101,18 +101,14 @@ def get_points(array, threshold=0,sort=True, min_dist=0):
     return points
 
 
-def overlay_points(image, points, size=(15, 15), save=False):
+def overlay_points(image, points, size=(15, 15)):
     """Plot points found in image."""
-    plt.figure(figsize=size)
-    plt.imshow(image)
+    fig, ax = plt.subplots(figsize=size)
+    ax.imshow(image)
     for point in points:
         x, y = point[0]
         plt.plot(y,x,'r*')
-    plt.axis('off')
-    plt.title('edge points')
-    if save:
-        plt.savefig('redge_points.jpg')
+    ax.axis('off')
 
-    plt.show()
-
+    return fig
 

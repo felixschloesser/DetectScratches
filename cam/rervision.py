@@ -5,15 +5,7 @@ import sys
 import ffmpeg
 import v4l2wrapper
 
-import argparse
 
-parser = argparse.ArgumentParser(
-    description='Read individual video frame and save it as jpeg')
-parser.add_argument('-o','--out_filename', type=str, help='Output filename')
-parser.add_argument('-s','--sharpness', default=0, help='Set sharpness, default 0')
-parser.add_argument('-e','--exposure', default=300, help='Set exposure_absolute, default 400')
-
-args = parser.parse_args()
 
 class Camera(object):
     """The camera Object, handles mainly IO."""
@@ -107,6 +99,17 @@ class Exposure(Camera):
 
 
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(
+    description='Read individual video frame and save it as jpeg')
+    parser.add_argument('-o','--out_filename', type=str, help='Output filename')
+    parser.add_argument('-s','--sharpness', default=0, help='Set sharpness, default 0')
+    parser.add_argument('-e','--exposure', default=300, help='Set exposure_absolute, default 400')
+
+    args = parser.parse_args()
+
+
     cam = Camera("/dev/video0")
 
     cam.format.set(width=3264,
