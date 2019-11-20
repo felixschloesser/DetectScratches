@@ -35,7 +35,6 @@ def derivative(img, dir='xy', sigma=1):
 def harris_response(img, sigma=3):
     """
     Compute the Harris corner detector response matrix.
-
     The function for each pixel in a graylevel image.
     """
     # derivatives
@@ -58,14 +57,15 @@ def harris_response(img, sigma=3):
 
 
 
-def get_points(array, threshold=0,sort=True, min_dist=0):
+def get_points(array, sort=True, min_dist=0):
     """
-    Return coordinates of as a dictionary, by default sorted by value in the array.
+    Return coordinates of the points on a image that are non zero as a 
+    dictionary, by default sorted by value in the array. 
     If min_distance is set ignore other points in the vicinity.
     """
 
     # get coordinates of entries that are non zero
-    coords = [tuple(c) for c in np.argwhere(array>threshold)]
+    coords = [tuple(c) for c in np.argwhere(array>0)]
     # ... and their values
     values = [array[x, y] for x,y in coords]
 
@@ -102,7 +102,10 @@ def get_points(array, threshold=0,sort=True, min_dist=0):
 
 
 def overlay_points(image, points, size=(15, 15)):
-    """Plot points found in image."""
+    """
+    Plot the points in red using the coordinates on the given image.
+    """
+    
     fig, ax = plt.subplots(figsize=size)
     ax.imshow(image)
     for point in points:

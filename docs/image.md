@@ -1,4 +1,12 @@
 # image.py
+
+## list_img
+Return a list of filenames for all jpg images in a directory.
+### parameters:
+path
+### return:
+list of strings
+
 ## load_img
 Load and return an image-object from the given path.
 ### parameters:
@@ -8,23 +16,32 @@ Pillow image object or numpy array
 
 
 ## save_img
-Save an image array in the current working directory
+Save an image array in the current working directory as a jpg.
 ### parameters:
 array, filename, path
 
-## img_list
-Return a list of filenames for all jpg images in a directory.
-### parameters:
-path
-### return:
-list of strings
+## show_img
+Display one or multiple images given as an numpy array
+### parameter:
+one or many image arrays, size tuple, color, minimum value, maximum value
+
+
 
 ## resize_ing
 Resize an image array using PIL.
 ### parameters:
-img array, size tuple
+image array, size tuple
 ### return:
-img array
+image array
 
 ## show_hist
-Display the Histogramm of a given Image
+Display the Histogram of a given Image
+### parameters:
+image array, number of bins, size tuple
+
+## eq_hist
+Histogramm equilisation of a grayscale image using a cumulative distribution function.
+### parameters:
+image array, number of bins
+
+

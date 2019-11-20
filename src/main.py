@@ -27,7 +27,7 @@ args = parser.parse_args()
 #path = "/home/tintin/rongheng/cv/test_images/"
 path = "/Users/fs/Uni/Praktikum/DetectScratches/test_images/"
 
-files  = img_list(path)
+files  = list_imgs(path)
 
 for file in files:
     raw_img = load_img(path + file, size=(300, 400))
