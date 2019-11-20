@@ -1,5 +1,5 @@
 # Detect Scratches
-Experiments into the field of computer vision.
+Experiments into the field of computer vision done at my three month internship at Rongheng Information Technology Co. Ltd.
 
 ## used libaries
 * numpy
