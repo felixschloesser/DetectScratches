@@ -1,7 +1,7 @@
 # Detect Scratches
 Experiments into the field of computer vision done at my three month internship at Rongheng Information Technology Co. Ltd. in Shanghai.
 
-## used libaries
+## Used Libraries
 * numpy
 * matplotlib
 * Pillow
@@ -9,10 +9,18 @@ Experiments into the field of computer vision done at my three month internship 
 
 see docker/requirements-full.txt for the full list
 
+## Python only deployment:
+* Clone the repository: `git clone https://github.com/felixschloesser/DetectScratches.git`
+* Enter the directory: `cd DetectScratches/docker`
+* Download the dependencies using `pip`: `pip install -r requirements-full.txt`
+* Make sure the images you want to inspect are in the `test-images/`directory
+* Execute using `./src/main.py`
 
-## Docker deployment
-Clone the repository using
-`git clone https://github.com/felixschloesser/DetectScratches.git`
+You can use the `-o` flag to output the result images.
+
+
+## Docker deployment:
+Clone the repository using `git clone https://github.com/felixschloesser/DetectScratches.git`
 
 Enter the directory: `cd DetectScratches/docker`
 
