@@ -11,9 +11,9 @@ Experiments into the field of computer vision.
 
 ## deployment
 Clone the repository using
-`git clone https://github.com/felixschloesser/computer-vision.git`
+`git clone https://github.com/felixschloesser/DetectScratches.git`
 
-Enter the directory: `cd computer-vision/docker`
+Enter the directory: `cd DetectScratches/docker`
 
 Docker will take care of the rest for you :)
 `docker-compose up`
