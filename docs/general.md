@@ -1,7 +1,5 @@
 # Project Documentation
 
-## Bearing Scratch Detection
-
 Development Environment: Jupyter Notebook
 
 ### Required Libaries:
