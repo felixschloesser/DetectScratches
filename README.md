@@ -6,14 +6,17 @@ Experiments into the field of computer vision.
 * matplotlib
 * Pillow
 * scipy
-* scikit-image
-* ipywidgets
 
-## deployment
+see the requirements.txt for the full list
+
+
+## Docker deployment
 Clone the repository using
 `git clone https://github.com/felixschloesser/DetectScratches.git`
 
 Enter the directory: `cd DetectScratches/docker`
+
+All you have to do is adjust binding path inside the docker-compose.yml to your cloned notebook folder.
 
 Docker will take care of the rest for you :)
 `docker-compose up`
