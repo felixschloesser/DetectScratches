@@ -25,7 +25,7 @@ args = parser.parse_args()
 
 # Insert the Path to the files you want to detect the scraches to here:
 #path = "/home/tintin/rongheng/cv/test_images/"
-path = "/Users/fs/Uni/Praktikum/ScratchDetect/test_images/"
+path = "/Users/fs/Uni/Praktikum/DetectScratches/test_images/"
 
 files  = img_list(path)
 
