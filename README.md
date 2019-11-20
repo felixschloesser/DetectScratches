@@ -1,4 +1,4 @@
-# computer-vision
+# Detect Scraches
 Experiments into the field of computer vision.
 
 ## used libaries
