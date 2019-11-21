@@ -1,1 +1,1 @@
-_all__ = ["image_lib", "edge_lib", "crop_lib"]
+_all__ = ["image", "edge", "crop", "signal"]

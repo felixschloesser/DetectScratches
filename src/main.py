@@ -9,7 +9,7 @@ from scipy.ndimage import filters, measurements, morphology, gaussian_laplace
 from skimage.morphology import skeletonize, remove_small_objects, convex_hull_image
 from skimage.measure import label, regionprops
 
-from lib.image import load_img, show_img, show_hist, resize_img, save_img, img_list
+from lib.image import load_img, show_img, show_hist, resize_img, save_img, list_imgs
 from lib.edge import threshold, get_points, overlay_points
 from lib.crop import mark_region, fit_lines, find_intersections, warp_to_corners
 
