@@ -22,6 +22,11 @@ parser.add_argument('-o','--output', help='Save the result images with marked sc
 
 args = parser.parse_args()
 
+################################
+# Bad behavior, don't do this.
+import warnings
+warnings.filterwarnings("e")
+################################
 
 # Insert the Path to the files you want to detect the scraches to here:
 #path = "/home/tintin/rongheng/cv/test_images/"
