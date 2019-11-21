@@ -37,7 +37,11 @@ for file in files:
     border, scale = mark_region(raw_img)
     # The border img is resized so we can fit 4 clear lines to the sides.
     line_points = fit_lines(border, scale)
-    intersections = find_intersections(line_points, raw_img.shape)
+    try:
+        intersections = find_intersections(line_points, raw_img.shape)
+    except:
+        print("Error: Could not detect bearing in image", file, " please try a different image.")
+        continue
     img = warp_to_corners(raw_img, *intersections)
 
 
