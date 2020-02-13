@@ -1,6 +1,7 @@
 FROM jupyter/minimal-notebook:latest
 
 COPY requirements.txt /tmp/
+RUN python3 pip install --upgrade pip
 RUN python3 -m pip install --trusted-host pypi.python.org --requirement /tmp/requirements.txt
 COPY . /tmp/
 
