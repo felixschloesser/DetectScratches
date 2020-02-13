@@ -6,6 +6,6 @@ services:
       - "8888:8888"
     volumes:
       - type: "bind"
-        source: "/Users/fs/Personal/DevProjects/CV/ScratchDetect/notebooks"
+        source: "/Users/fs/Personal/DevProjects/ScratchDetect/notebooks"
         target: "/home/jovyan"
 
